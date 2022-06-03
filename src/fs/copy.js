@@ -1,16 +1,19 @@
-import  {rename as moveFile } from 'fs/promises';
+import  * as fs from 'fs/promises';
 import { fileURLToPath } from 'url';
 import  path, { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const currentFilesPath = path.join(__dirname, 'files');
-const newFilesPath = path.join(__dirname, 'files_copy')
+const copyFilesPath = path.join(__dirname, 'files_copy')
 
 export const copy = async () => {
     try {
-        await moveFile(currentFilesPath, newFilesPath);
-        console.log(`Moved file from ${currentFilesPath} to ${newFilesPath}`);
+        const files = await fs.readdir(currentFilesPath);
+        await fs.mkdir(copyFilesPath);
+        for (const file of files) {
+            await fs.copyFile(`${currentFilesPath}/${file}`, `${copyFilesPath}/${file}`);
+        }
       } catch (error) {
         console.error('FS operation failed');
       }
