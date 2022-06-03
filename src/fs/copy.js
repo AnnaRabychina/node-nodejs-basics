@@ -10,7 +10,7 @@ const newFilesPath = path.join(__dirname, 'files_copy')
 export const copy = async () => {
     try {
         await moveFile(currentFilesPath, newFilesPath);
-        console.log(`Moved files from ${currentFilesPath} to ${newFilesPath}`);
+        console.log(`Moved file from ${currentFilesPath} to ${newFilesPath}`);
       } catch (error) {
         console.error('FS operation failed');
       }
