@@ -5,7 +5,7 @@ import  path, { dirname } from 'path';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-await import ('./files/c.js');
+import './files/c.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
